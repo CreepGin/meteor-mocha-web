@@ -60,6 +60,13 @@ MochaWeb.MeteorCollectionTestReporter = function(runner){
 
   runner.on("start", Meteor.bindEnvironment(
     function(){
+
+      ddpParentConnection.call("resetReports", { framework: "mocha-web-velocity" }, function(error) {
+        if (error){
+          console.error("ERROR RESETTING REPORTS", error);
+        }
+      });
+      
       //TODO tell testRunner that mocha tests have started
     },
     function(err){
